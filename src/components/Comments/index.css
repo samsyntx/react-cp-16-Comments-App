@@ -1,1 +1,14 @@
-/* Write your CSS here */
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input-content-container-with-image {
+  display: flex;
+  flex-direction: column;
+}

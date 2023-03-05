@@ -23,6 +23,10 @@ class Comments extends Component {
     return (
       <div className="main-container">
         <div className="input-content-container-with-image">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/comments-app/comments-img.png"
+            alt="comments"
+          />
           <div className="comment-input-section">
             <p>Say something about 4.0 Technologies</p>
             <input type="text" placeholder="Your Name" />
@@ -30,10 +34,6 @@ class Comments extends Component {
             <textarea placeholder="Your comment" />
             <button type="button">Add Comment</button>
           </div>
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/comments-app/comments-img.png"
-            alt="comments"
-          />
         </div>
         <hr />
         <div className="show-comment-list-section">
