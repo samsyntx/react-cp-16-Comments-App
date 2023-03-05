@@ -17,10 +17,30 @@ const initialContainerBackgroundClassNames = [
   'light-blue',
 ]
 
-const commentList = []
-
 class Comments extends Component {
+  state = {displayCommentsList: []}
+
+  addCommentButton = event => {
+    const {displayCommentsList} = this.state
+    event.preventDefault()
+    const commenterName = document.getElementById('yourName').value
+    const userComment = document.getElementById('commentTextArea').value
+    const settingDateLessThan = formatDistanceToNow(new Date())
+    const uniqueIdForPerComment = uuidv4()
+
+    const Newcomment = {
+      id: uniqueIdForPerComment,
+      name: commenterName,
+      comment: userComment,
+      dateTimeComment: settingDateLessThan,
+    }
+
+    const joiningNewList = [...displayCommentsList, Newcomment]
+    this.setState({displayCommentsList: joiningNewList})
+  }
+
   render() {
+    const {displayCommentsList} = this.state
     return (
       <div className="main-container">
         <h1 className="comment-main-heading">Comments</h1>
@@ -30,7 +50,7 @@ class Comments extends Component {
             src="https://assets.ccbp.in/frontend/react-js/comments-app/comments-img.png"
             alt="comments"
           />
-          <div className="comment-input-section">
+          <form className="comment-input-section">
             <label htmlFor="yourName" className="comment-section-paragraph">
               Say something about 4.0 Technologies
             </label>
@@ -42,13 +62,18 @@ class Comments extends Component {
             />
             <br />
             <textarea
+              id="commentTextArea"
               className="input-style text-area-input"
               placeholder="Your comment"
             />
-            <button className="add-comment-button" type="button">
+            <button
+              onClick={this.addCommentButton}
+              className="add-comment-button"
+              type="submit"
+            >
               Add Comment
             </button>
-          </div>
+          </form>
         </div>
         <hr className="horizontal-line-style" />
         <div className="show-comment-list-section">
@@ -56,7 +81,9 @@ class Comments extends Component {
             <span className="comment-count-number">0</span> Comments
           </p>
           <ul className="list-of-comments-container">
-            <CommentItem />
+            {displayCommentsList.map(eachComment => (
+              <CommentItem id={eachComment.id} commentDetail={eachComment} />
+            ))}
           </ul>
         </div>
       </div>
