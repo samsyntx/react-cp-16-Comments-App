@@ -39,7 +39,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #0ea5e9;
   color: white;
   padding: 15px 20px 15px 20px;
   margin-right: 10px;
@@ -80,12 +79,19 @@
   display: flex;
   align-items: center;
 }
-.like-text-nochange {
-  color: #7e858e;
+.like-text-common {
   font-size: 20px;
   margin-left: 15px;
 }
 .image-width-for-like-and-delete {
   width: 25px;
   height: 25px;
+}
+.liked-color {
+  color: #0284c7;
+  font-weight: 500;
+}
+.no-liked-style {
+  color: #7e858e;
+  font-weight: 500;
 }

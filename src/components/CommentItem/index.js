@@ -1,17 +1,38 @@
 import './index.css'
 
 const CommentItem = props => {
-  const {commentDetail, changeIsLikedStatus} = props
-  const {id, name, comment, dateTimeComment, isLiked} = commentDetail
-  console.log(isLiked)
+  const {commentDetail, changeIsLikedStatus, deleteParticularComment} = props
+  const {
+    id,
+    name,
+    comment,
+    dateTimeComment,
+    isLiked,
+    backgroundColorIndex,
+  } = commentDetail
+
   const likedButtonClicked = () => {
     changeIsLikedStatus(id)
   }
 
+  const deleteButtonClicked = () => {
+    deleteParticularComment(id)
+  }
+  //   If Liked then this CSS will Apply
+  const likeStyle = isLiked
+    ? [
+        'liked-color',
+        'https://assets.ccbp.in/frontend/react-js/comments-app/liked-img.png',
+      ]
+    : [
+        'no-liked-style',
+        'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png',
+      ]
+
   return (
     <li className="complete-comment-list-container">
       <div className="dp-and-name-comment-section">
-        <div className="dp-section">
+        <div className={`dp-section ${backgroundColorIndex}`}>
           <p>{name[0]}</p>
         </div>
         <div className="name-and-comment-sec">
@@ -30,16 +51,17 @@ const CommentItem = props => {
         >
           <img
             className="image-width-for-like-and-delete"
-            src="https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png"
+            src={likeStyle[1]}
             alt="like unlike"
           />
-          <p className="like-text-nochange">Like</p>
+          <p className={`like-text-common ${likeStyle[0]}`}>Like</p>
         </button>
         <button type="button" className="common-button">
           <img
             className="image-width-for-like-and-delete"
             src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
             alt="delete"
+            onClick={deleteButtonClicked}
           />
         </button>
       </div>

@@ -1,9 +1,6 @@
-/* eslint-disable no-unused-vars */
 import {Component} from 'react'
 import './index.css'
-// eslint-disable-next-line no-unused-vars
 import {v4 as uuidv4} from 'uuid'
-// eslint-disable-next-line no-unused-vars
 import {formatDistanceToNow} from 'date-fns'
 import CommentItem from '../CommentItem'
 
@@ -20,24 +17,14 @@ const initialContainerBackgroundClassNames = [
 class Comments extends Component {
   state = {displayCommentsList: []}
 
-  changeIsLikedStatus = uniqueId => {
-    this.setState(prevState => ({
-      displayCommentsList: prevState.map(eachComment => {
-        if (eachComment.id === uniqueId) {
-          return {...eachComment, isLiked: !eachComment.isLiked}
-        }
-        return eachComment
-      }),
-    }))
-  }
-
   addCommentButton = event => {
-    const {displayCommentsList} = this.state
     event.preventDefault()
     const commenterName = document.getElementById('yourName').value
     const userComment = document.getElementById('commentTextArea').value
     const settingDateLessThan = formatDistanceToNow(new Date())
     const uniqueIdForPerComment = uuidv4()
+    const backgroundColorIndex =
+      initialContainerBackgroundClassNames[Math.floor(Math.random() * 7)]
 
     const newComment = {
       id: uniqueIdForPerComment,
@@ -45,14 +32,36 @@ class Comments extends Component {
       comment: userComment,
       dateTimeComment: settingDateLessThan,
       isLiked: false,
+      backgroundColorIndex,
     }
-
+    const {displayCommentsList} = this.state
     const joiningNewList = [...displayCommentsList, newComment]
     this.setState({displayCommentsList: joiningNewList})
+    document.getElementById('yourName').value = ''
+    document.getElementById('commentTextArea').value = ''
+  }
+
+  changeIsLikedStatus = uniqueId => {
+    const {displayCommentsList} = this.state
+    const changeIsLikedStatus = displayCommentsList.map(eachComment => {
+      if (eachComment.id === uniqueId) {
+        return {...eachComment, isLiked: !eachComment.isLiked}
+      }
+      return {...eachComment}
+    })
+    this.setState({displayCommentsList: changeIsLikedStatus})
+  }
+
+  deleteParticularComment = uniqueId => {
+    const {displayCommentsList} = this.state
+    const deleteThatId = displayCommentsList.filter(
+      eachCom => eachCom.id !== uniqueId,
+    )
+    this.setState({displayCommentsList: deleteThatId})
   }
 
   render() {
-    const {displayCommentsList, isLiked} = this.state
+    const {displayCommentsList} = this.state
 
     const lengthOfComments = displayCommentsList.length
     return (
@@ -101,6 +110,7 @@ class Comments extends Component {
                 key={eachComment.id}
                 commentDetail={eachComment}
                 changeIsLikedStatus={this.changeIsLikedStatus}
+                deleteParticularComment={this.deleteParticularComment}
               />
             ))}
           </ul>
