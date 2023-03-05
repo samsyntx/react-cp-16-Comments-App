@@ -13,7 +13,7 @@
 }
 .comment-main-heading {
   text-align: left;
-  width: 85%;
+  width: 100%;
 }
 .main-comment-image {
   width: 95%;
@@ -47,6 +47,7 @@
   border: none;
   align-self: flex-start;
   border-radius: 10px;
+  cursor: pointer;
 }
 .horizontal-line-style {
   width: 100%;
@@ -58,7 +59,7 @@
 }
 .comment-count {
   color: #1e293b;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   font-size: 20px;
 }
 .comment-count-number {
@@ -70,4 +71,18 @@
 .list-of-comments-container {
   list-style: none;
   width: 100%;
+}
+@media all and (min-width: 700px) {
+  .input-content-container-with-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .main-comment-image {
+    order: 10;
+    width: 40%;
+    margin: 0px 100px 0px 100px;
+  }
 }

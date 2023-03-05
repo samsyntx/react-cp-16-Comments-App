@@ -26,4 +26,56 @@
   background-color: #0ea5e9;
 }
 
-/* Write your CSS here */
+.complete-comment-list-container {
+  margin: 0px 0px 10px 0px;
+}
+.dp-and-name-comment-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.dp-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #0ea5e9;
+  color: white;
+  padding: 15px 20px 15px 20px;
+  margin-right: 10px;
+  border-radius: 50px;
+}
+.commenter-name-style {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #1e293b;
+  font-weight: 500;
+}
+.commenter-comment-style {
+  color: #7e858e;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+.like-and-delete-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.common-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.like-unlike-button {
+  display: flex;
+  align-items: center;
+}
+.like-text-nochange {
+  color: #7e858e;
+  font-size: 20px;
+  margin-left: 15px;
+}
+.image-width-for-like-and-delete {
+  width: 25px;
+  height: 25px;
+}
