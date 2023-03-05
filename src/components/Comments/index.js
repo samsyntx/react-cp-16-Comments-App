@@ -74,9 +74,9 @@ class Comments extends Component {
             alt="comments"
           />
           <form className="comment-input-section">
-            <label htmlFor="yourName" className="comment-section-paragraph">
+            <p htmlFor="yourName" className="comment-section-paragraph">
               Say something about 4.0 Technologies
-            </label>
+            </p>
             <input
               className="input-style"
               id="yourName"
