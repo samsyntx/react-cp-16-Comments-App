@@ -20,6 +20,17 @@ const initialContainerBackgroundClassNames = [
 class Comments extends Component {
   state = {displayCommentsList: []}
 
+  changeIsLikedStatus = uniqueId => {
+    this.setState(prevState => ({
+      displayCommentsList: prevState.map(eachComment => {
+        if (eachComment.id === uniqueId) {
+          return {...eachComment, isLiked: !eachComment.isLiked}
+        }
+        return eachComment
+      }),
+    }))
+  }
+
   addCommentButton = event => {
     const {displayCommentsList} = this.state
     event.preventDefault()
@@ -28,19 +39,22 @@ class Comments extends Component {
     const settingDateLessThan = formatDistanceToNow(new Date())
     const uniqueIdForPerComment = uuidv4()
 
-    const Newcomment = {
+    const newComment = {
       id: uniqueIdForPerComment,
       name: commenterName,
       comment: userComment,
       dateTimeComment: settingDateLessThan,
+      isLiked: false,
     }
 
-    const joiningNewList = [...displayCommentsList, Newcomment]
+    const joiningNewList = [...displayCommentsList, newComment]
     this.setState({displayCommentsList: joiningNewList})
   }
 
   render() {
-    const {displayCommentsList} = this.state
+    const {displayCommentsList, isLiked} = this.state
+
+    const lengthOfComments = displayCommentsList.length
     return (
       <div className="main-container">
         <h1 className="comment-main-heading">Comments</h1>
@@ -78,11 +92,16 @@ class Comments extends Component {
         <hr className="horizontal-line-style" />
         <div className="show-comment-list-section">
           <p className="comment-count">
-            <span className="comment-count-number">0</span> Comments
+            <span className="comment-count-number">{lengthOfComments}</span>{' '}
+            Comments
           </p>
           <ul className="list-of-comments-container">
             {displayCommentsList.map(eachComment => (
-              <CommentItem id={eachComment.id} commentDetail={eachComment} />
+              <CommentItem
+                key={eachComment.id}
+                commentDetail={eachComment}
+                changeIsLikedStatus={this.changeIsLikedStatus}
+              />
             ))}
           </ul>
         </div>
