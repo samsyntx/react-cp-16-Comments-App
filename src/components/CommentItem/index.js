@@ -56,12 +56,11 @@ const CommentItem = props => {
           />
           <p className={`like-text-common ${likeStyle[0]}`}>Like</p>
         </button>
-        <button type="button" className="common-button">
+        <button data-testid="delete" type="button" className="common-button" onClick={deleteButtonClicked}>
           <img
             className="image-width-for-like-and-delete"
             src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
             alt="delete"
-            onClick={deleteButtonClicked}
           />
         </button>
       </div>
