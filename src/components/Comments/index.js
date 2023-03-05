@@ -1,5 +1,10 @@
+/* eslint-disable no-unused-vars */
 import {Component} from 'react'
 import './index.css'
+// eslint-disable-next-line no-unused-vars
+import {v4 as uuidv4} from 'uuid'
+// eslint-disable-next-line no-unused-vars
+import {formatDistanceToNow} from 'date-fns'
 
 const initialContainerBackgroundClassNames = [
   'amber',
@@ -10,6 +15,9 @@ const initialContainerBackgroundClassNames = [
   'red',
   'light-blue',
 ]
+
+const commentList = []
+
 class Comments extends Component {
   render() {
     return (
@@ -33,7 +41,9 @@ class Comments extends Component {
             <p>0</p>
             <p>Comments</p>
           </div>
-          <ul className="list-of-comments-container"></ul>
+          <ul className="list-of-comments-container">
+            <li>Hello</li>
+          </ul>
         </div>
       </div>
     )
