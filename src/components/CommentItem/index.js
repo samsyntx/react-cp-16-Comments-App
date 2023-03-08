@@ -1,4 +1,5 @@
 import './index.css'
+import {formatDistanceToNow} from 'date-fns'
 
 const CommentItem = props => {
   const {commentDetail, changeIsLikedStatus, deleteParticularComment} = props
@@ -38,7 +39,9 @@ const CommentItem = props => {
         <div className="name-and-comment-sec">
           <div className="username-and-date-time">
             <p className="commenter-name-style">{name}</p>
-            <p className="commenter-date-time-less">{dateTimeComment} ago</p>
+            <p className="commenter-date-time-less">
+              {formatDistanceToNow(dateTimeComment)} ago
+            </p>
           </div>
           <p className="commenter-comment-style">{comment}</p>
         </div>
@@ -56,7 +59,12 @@ const CommentItem = props => {
           />
           <p className={`like-text-common ${likeStyle[0]}`}>Like</p>
         </button>
-        <button data-testid="delete" type="button" className="common-button" onClick={deleteButtonClicked}>
+        <button
+          data-testid="delete"
+          type="button"
+          className="common-button"
+          onClick={deleteButtonClicked}
+        >
           <img
             className="image-width-for-like-and-delete"
             src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"

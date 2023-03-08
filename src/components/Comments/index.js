@@ -1,7 +1,6 @@
 import {Component} from 'react'
 import './index.css'
 import {v4 as uuidv4} from 'uuid'
-import {formatDistanceToNow} from 'date-fns'
 import CommentItem from '../CommentItem'
 
 const initialContainerBackgroundClassNames = [
@@ -21,7 +20,7 @@ class Comments extends Component {
     event.preventDefault()
     const commenterName = document.getElementById('yourName').value
     const userComment = document.getElementById('commentTextArea').value
-    const settingDateLessThan = formatDistanceToNow(new Date())
+    const settingDateLessThan = new Date()
     const uniqueIdForPerComment = uuidv4()
     const backgroundColorIndex =
       initialContainerBackgroundClassNames[Math.floor(Math.random() * 7)]
